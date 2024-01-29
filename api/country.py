@@ -1,6 +1,7 @@
 from http.server import BaseHTTPRequestHandler
 from urllib import parse
-import platform
+import requests
+
  
 class handler(BaseHTTPRequestHandler):
  
@@ -11,12 +12,18 @@ class handler(BaseHTTPRequestHandler):
         query_string_list = parse.parse_qsl(url_components.query)
         dic = dict(query_string_list)
 
-        name = dic.get("name")
+        if "country" in dic:
+            url = "https://restcountries.com/v3.1/name/"
+            r= requests.get(url + dic("country"))
+            data = r.json()
+            country_info = []
+            for word_data in data:
+                capital_data = word_data["capital"][0]
+                country_info.append(capital_data)
+            message = str(country_info)
 
-        if name:
-            message = f"Hello {name}"
         else:
-            message = "Hello stranger"
+            message = "Please provide valid country"
 
         
 
