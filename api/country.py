@@ -19,7 +19,7 @@ class handler(BaseHTTPRequestHandler):
             country_capital = []
             country_name = []
             for word_data in data:
-                country_name_data = word_data["name"][0]["common"][0]
+                country_name_data = word_data[0]["name"][0]["common"][0]
                 capital_data = word_data["capital"][0]
                 country_name.append(country_name_data)
                 country_capital.append(capital_data)
