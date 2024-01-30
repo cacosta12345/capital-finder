@@ -2,11 +2,12 @@ from http.server import BaseHTTPRequestHandler
 from urllib import parse
 import requests
 
+ 
 class handler(BaseHTTPRequestHandler):
-
+ 
     def do_GET(self):
 
-        s = self.path
+        s= self.path
         url_components = parse.urlsplit(s)
         query_string_list = parse.parse_qsl(url_components.query)
         dic = dict(query_string_list)
@@ -21,7 +22,10 @@ class handler(BaseHTTPRequestHandler):
                 message = f"The capital of {country_name} is {capital_name}."
             else:
                 message = "No data found for the given country."
-        elif "capital" in dic:
+        else:
+            message = "Please provide a valid country name."
+
+        if "capital" in dic:
             url = "https://restcountries.com/v3.1/capital/"
             r = requests.get(url + dic["capital"])
             data = r.json()
@@ -32,10 +36,14 @@ class handler(BaseHTTPRequestHandler):
             else:
                 message = "No data found for the given capital."
         else:
-            message = "Please provide a valid country name or capital name."
+            message = "Please provide a valid capital name."
 
-        # Send the response
+        
+
+        
+
         self.send_response(200)
-        self.send_header('Content-type', 'text/plain')
+        self.send_header('Content-type','text/plain')
         self.end_headers()
-        self.wfile.write(message.encode())
+        self.wfile.write(message.encode('utf-8'))
+        return
