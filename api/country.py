@@ -14,19 +14,16 @@ class handler(BaseHTTPRequestHandler):
 
         if "country" in dic:
             url = "https://restcountries.com/v3.1/name/"
-            r= requests.get(url + dic["country"])
+            r = requests.get(url + dic["country"])
             data = r.json()
-            country_capital = []
-            country_name = []
-            for word_data in data:
-                country_name_data = word_data[0]["name"][0]["common"][0]
-                capital_data = word_data["capital"][0]
-                country_name.append(country_name_data)
-                country_capital.append(capital_data)
-            message = f"The capital of {str(country_name) is {str(country_capital)}}"
-
+            if data:
+                country_name = data[0]['name']['common']
+                capital_name = data[0]['capital'][0] if 'capital' in data[0] else 'No Capital'
+                message = f"The capital of {country_name} is {capital_name}."
+            else:
+                message = "No data found for the given country."
         else:
-            message = "Please provide valid country"
+            message = "Please provide a valid country name."
 
         
 
