@@ -11,8 +11,6 @@ class handler(BaseHTTPRequestHandler):
         query_string_list = parse.parse_qsl(url_components.query)
         dic = dict(query_string_list)
 
-        message = ""  # Initialize message variable
-
         if "country" in dic:
             url = "https://restcountries.com/v3.1/name/"
             r = requests.get(url + dic["country"])
