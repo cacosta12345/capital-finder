@@ -30,4 +30,11 @@ Libraries:
 Run:
     Go to "{vercel url} + ?country={country_name}" or "{vercel url} + ?capital={capital name}"
 
+    Example: 
+    
+    https://capital-finder-chris-acosta.vercel.app/api/country?country=mexico
+
+    https://capital-finder-chris-acosta.vercel.app/api/country?capital=tokyo
+
+
 ## Tests
