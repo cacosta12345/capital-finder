@@ -25,6 +25,21 @@ class handler(BaseHTTPRequestHandler):
         else:
             message = "Please provide a valid country name."
 
+        if "capital" in dic:
+            url = "https://restcountries.com/v3.1/capital/"
+            r = requests.get(url + dic["capital"])
+            data = r.json()
+            if data:
+                country_name = data[0]['name']['common']
+                capital_name = data[0]['capital'][0] if 'capital' in data[0] else 'No Capital'
+                message = f"{capital_name} is the capital of {country_name}."
+            else:
+                message = "No data found for the given capital."
+        else:
+            message = "Please provide a valid capital name."
+
+        
+
         
 
         self.send_response(200)
