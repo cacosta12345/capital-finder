@@ -23,7 +23,7 @@ class handler(BaseHTTPRequestHandler):
                 message = f"The capital of {country_name} is {capital_name}."
             else:
                 message = "No data found for the given country."
-        elif "capital" in dic:  # Use elif to ensure this block is mutually exclusive with the "country" block
+        elif "capital" in dic:
             url = "https://restcountries.com/v3.1/capital/"
             r = requests.get(url + dic["capital"])
             data = r.json()
