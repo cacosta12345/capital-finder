@@ -18,12 +18,16 @@ Environment:
 
 Libraries:
     Requests: https://requests.readthedocs.io/en/latest/
+    urllib: https://github.com/python/cpython/blob/3.12/Lib/urllib/parse.py
 
-Setup local environment
-Install vercel
-Install requests
+* Setup local environment
+
+* Install vercel
+
+* Install requests library
+
 
 Run:
-    Go to "{vercel url} + {country name}" or "{vercel url} + {capital name}"
+    Go to "{vercel url} + ?country={country_name}" or "{vercel url} + ?capital={capital name}"
 
 ## Tests
