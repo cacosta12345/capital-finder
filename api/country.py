@@ -11,7 +11,7 @@ class handler(BaseHTTPRequestHandler):
         url_components = parse.urlsplit(s)
         query_string_list = parse.parse_qsl(url_components.query)
         dic = dict(query_string_list)
-        url = "https://restcountries.com/v3.1/"
+        endpoint = "https://restcountries.com/v3.1/"
         message = ""
         errorMessage = "Something went wrong."
         statusCode = 200
@@ -39,11 +39,11 @@ class handler(BaseHTTPRequestHandler):
         #         message = "Error getting capital info."
 
         if "country" in dic:
-            endpoint = url + "name/" + dic["country"]
+            endpoint += "name/" + dic["country"]
             errorMessage = "Error getting country info."
             successMessage = "The capital of <country_name> is <capital_name>."
         elif "capital" in dic: 
-            endpoint = url+"capital/" + dic["capital"]
+            endpoint += "capital/" + dic["capital"]
             errorMessage = "Error getting capital info."
             successMessage = "The capital of <country_name> is <capital_name>."
 
