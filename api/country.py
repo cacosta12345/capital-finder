@@ -14,8 +14,8 @@ class handler(BaseHTTPRequestHandler):
         
 
         if "country" in dic:
-            url = "https://restcountries.com/v3.1/name/"
-            r = requests.get(url + dic["country"])
+            url = "https://restcountries.com/v3.1/name/"+ dic["country"]
+            r = requests.get(url)
             data = r.json()
             if data:
                 country_name = data[0]['name']['common']
