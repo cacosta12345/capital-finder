@@ -11,10 +11,11 @@ class handler(BaseHTTPRequestHandler):
         url_components = parse.urlsplit(s)
         query_string_list = parse.parse_qsl(url_components.query)
         dic = dict(query_string_list)
+        url = "https://restcountries.com/v3.1/"
 
         if "country" in dic:
-            url = "https://restcountries.com/v3.1/name/"
-            r = requests.get(url + dic["country"])
+            endpoint = url+"name/" + dic["country"]
+            r = requests.get(endpoint)
             data = r.json()
             if data:
                 country_name = data[0]['name']['common']
@@ -24,8 +25,8 @@ class handler(BaseHTTPRequestHandler):
                 message = "Error getting country info."
        
         elif "capital" in dic:
-            url = "https://restcountries.com/v3.1/capital/" + dic["capital"]
-            r = requests.get(url)
+            endpoint = url+"capital/" + dic["capital"]
+            r = requests.get(endpoint)
             data = r.json()
             if data:
                 country_name = data[0]['name']['common']
